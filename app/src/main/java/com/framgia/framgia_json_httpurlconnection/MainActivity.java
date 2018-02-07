@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements OnFetchDataListen
     private EditText mEditText;
     private Button mSearch;
     private ProgressDialog dialog;
-    private ListRepos listRepos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements OnFetchDataListen
     }
 
     private void loadData() {
-        Log.d("TAG", "loadData: " + "AAAA");
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading");
         mSearch.setOnClickListener(new View.OnClickListener() {

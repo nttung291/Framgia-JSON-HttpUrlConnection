@@ -4,6 +4,10 @@ package com.framgia.framgia_json_httpurlconnection.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Repo {
@@ -1145,4 +1149,36 @@ public class Repo {
         return this;
     }
 
+    public static Repo fromJson(JSONObject jsonObject) {
+        Repo b = new Repo();
+        try {
+            b.id = jsonObject.getLong("id");
+            b.name = jsonObject.getString("name");
+            b.htmlUrl = jsonObject.getString("html_url");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return b;
+    }
+
+    public static ArrayList<Repo> fromJson(JSONArray jsonArray) {
+        JSONObject repoJson;
+        ArrayList<Repo> reposList = new ArrayList<Repo>(jsonArray.length());
+        // Process each result in json array, decode and convert to business object
+        for (int i=0; i < jsonArray.length(); i++) {
+            try {
+                repoJson = jsonArray.getJSONObject(i);
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+
+            Repo repo = Repo.fromJson(repoJson);
+            if (repo != null) {
+                reposList.add(repo);
+            }
+        }
+        return reposList;
+    }
 }

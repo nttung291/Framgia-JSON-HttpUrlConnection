@@ -4,7 +4,9 @@ import android.os.AsyncTask;
 import com.framgia.framgia_json_httpurlconnection.model.Repo;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,8 +37,8 @@ public class FetchDataFromUrl extends AsyncTask<String,Void,ArrayList<Repo>> {
     protected ArrayList<Repo> doInBackground(String... strings) {
         try {
             String json = getJSONStringFromURL(strings[0]);
-            Repo[] listRepos = new Gson().fromJson(json,Repo[].class);
-            repoArrayList = new ArrayList<>(Arrays.asList(listRepos));
+            JSONArray jsonarray = new JSONArray(json);
+            repoArrayList = Repo.fromJson(jsonarray);
             return repoArrayList;
         } catch (IOException e) {
             e.printStackTrace();
