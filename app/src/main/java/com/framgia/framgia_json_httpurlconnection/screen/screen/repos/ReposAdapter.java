@@ -1,6 +1,7 @@
-package com.framgia.framgia_json_httpurlconnection.adapter;
+package com.framgia.framgia_json_httpurlconnection.screen.screen.repos;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,24 +10,29 @@ import android.widget.TextView;
 
 import com.framgia.framgia_json_httpurlconnection.R;
 import com.framgia.framgia_json_httpurlconnection.model.Repo;
+import com.framgia.framgia_json_httpurlconnection.screen.BaseRecyclerViewAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nttungg on 2/7/18.
  */
 
-public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ViewHolder> {
+public class ReposAdapter extends  BaseRecyclerViewAdapter<ReposAdapter.ViewHolder> {
 
-    private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<Repo> repos;
+    private ArrayList<Repo> mrepos = new ArrayList<>();
 
-    public ReposAdapter(Context context, ArrayList<Repo> repos) {
-        this.context = context;
-        this.repos = repos;
+    public ReposAdapter(@NonNull Context context) {
+        super(context);
     }
 
+    public void replaceData(@NonNull List<Repo> repos) {
+        mrepos.clear();
+        mrepos.addAll(repos);
+        notifyDataSetChanged();
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,12 +45,12 @@ public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bindData(repos.get(position));
+        holder.bindData(mrepos.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return repos.size();
+        return mrepos.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

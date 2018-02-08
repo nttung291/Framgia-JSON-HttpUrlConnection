@@ -1,12 +1,11 @@
-package com.framgia.framgia_json_httpurlconnection;
+package com.framgia.framgia_json_httpurlconnection.remote;
 
 import android.os.AsyncTask;
+
 import com.framgia.framgia_json_httpurlconnection.model.Repo;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by nttungg on 2/7/18.

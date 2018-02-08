@@ -1,4 +1,4 @@
-package com.framgia.framgia_json_httpurlconnection;
+package com.framgia.framgia_json_httpurlconnection.remote;
 
 import com.framgia.framgia_json_httpurlconnection.model.Repo;
 
